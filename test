@@ -1,0 +1,440 @@
+Quiz 01
+Based on the dataset for this course, what does this query count?
+ SELECT
+     COUNT(*)
+ FROM
+     dsv1069.users
+ JOIN
+     dsv1069.orders
+ ON
+     users.id = orders.user_id
+Counts the number of users
+Counts the number of invoices
+Counts the number of users who have ordered an item
+Counts the number of rows in orders table
+Assume you have no information about the data in the example table. When I run the query below, no rows are returned, but there are no error messages. What are possible reasons for this? (Select all that apply.)
+ SELECT *
+ FROM example_table
+ WHERE id IS NULL
+There are no rows in the example_table - it’s empty
+There is no column called id
+There are no rows with a null id
+In the events table, (dsv1069.events) for this class, how many rows exist per event_id?
+Always more than one
+Exactly one
+One per parameter_name
+When you encounter a new dataset, which of the following can you assume? (Select all that apply.)
+The data is out-of-date
+The table has a primary key
+Test usage is unfiltered
+The table is empty
+There are duplicate rows
+TROUBLESHOOT THIS ERROR: Based on your exploration of the tables in the course dataset. Why are the results to this specific query empty?
+ SELECT *
+ FROM
+     dsv1069.users
+ JOIN
+     dsv1069.events
+ ON
+     users.parent_user_id = events.user_id
+ WHERE
+     event_name = 'view_item'
+ AND
+     merged_at is NULL
+The users table is empty
+There are no events with this event_name
+There are no parent_user_ids that satisfy the WHERE clause
+TROUBLESHOOT THIS ERROR: Why are the results for this specific query empty?
+ SELECT *
+ FROM
+     dsv1069.events
+ WHERE
+     event_name = 'item_view'
+There are no events with this event_name
+The table is empty
+No items have ever been viewed
+What does this query do? Select all true statements.
+ SELECT
+     COUNT(*)
+ FROM
+     dsv1069.events
+ WHERE
+     event_name = 'view_item'
+The query counts the number of rows in the events table.
+The query counts the number of rows corresponding to view_item events.
+The query returns all of the rows in the events table.
+The query counts the number of view_item events.
+The query counts the number of events.
+Consider the following query: What happens when some rows have a NULL value in the column table_alpha.key?
+ SELECT *
+ FROM table_alpha
+ JOIN table_beta
+ ON table_alpha.key = table_beta.column
+Those values aren’t included in the result.
+Each row with a null value will be joined to every row in table_beta.
+Each row with a null value is joined to every row in table_beta where table_beta.column is null.
+It is not possible for a join key to be null, the query will return an error.
+Which of the following are problems with the query below?
+ SELECT
+     COUNT(*)
+ FROM
+     dsv1069.users
+ JOIN
+     dsv1069.orders
+ ON
+     users.parent_user_id = orders.user_id
+Count(*) counts rows not unique users
+We need a GROUP BY clause
+We are missing a comma
+The join should be on users.parent_user_id
+There are no error messages, so it must be right
+The join should be on users.user_id
+In the users table, the column parent_user_id is ?.
+Sometimes NULL
+Never NULL
+Always NULL
+Answers 01
+Question	Answer
+1	iv
+2	i, iii
+3	iii
+4	 
+5	iii
+6	i
+7	ii
+8	iii
+9	i
+10	i
+Quiz 02
+Which of the following is easier to read?
+ SELECT
+     column_1,
+     column_2,
+     count(*)
+ FROM
+     example_table
+ WHERE
+     column_3 is not null
+ GROUP BY
+     column_1,
+     column_2
+ select column_1, column_2, count(*) from example_table where
+ column_3 is not null group by column_1, column_2
+Suppose in a table you find a column called username, which contains the value kat123. What is the correct data type category for this column?
+Date
+String
+Number
+Suppose in a table you find a column called price, which contains the value $9.99. What is the best data type category for this column?
+String
+Number
+Date
+Suppose in a table you find a column called created_at, which contains the value 2019-01-01. What is the best data type category for this column?
+Date
+Number
+String
+Suppose in a table you find a column called price, which contains the value 9.99. Of the following options, which is the best data type for this column?
+FLOAT
+BIGINT
+INT
+Answers 02
+Question	Answer
+1	i
+2	ii
+3	ii
+4	i
+5	i
+Questions 03
+ETL stands for:
+Extract Transform Language
+Extract Transform Load
+Extraction Transform Load
+Extraction Transaction Load
+Extract Transaction Language
+If I say that table X is dependent on table Y which table should be generated (or refreshed) first?
+Table Y
+Table X
+Based on the material covered in this lesson What is a Dependency? which of the following statements is true?
+The events table depends on the view_items table
+The users table depends on the events table
+The view_items table depends on the events table
+The view_items table depends on the items table
+Based on the code snippet below, which statements are definitely true:
+ CREATE TABLE table_x AS
+ SELECT
+     date,
+     COUNT(*)
+ FROM
+      table_y
+ GROUP BY
+     date
+Table_y has no dependenies
+Table_x is dependent on table_y
+Table_y is dependent on table_x
+Answers 03
+Question	Answer
+1	ii
+2	i
+3	iii
+4	ii
+Quiz 04
+Which step should happen first in data analysis?
+Machine Learning
+Cleaning and Labeling Data
+Collecting Data
+TROUBLESHOOT THIS ERROR by selecting appropriate actions to remedy this specific query: Kat ran 9 lines of MySQL (finished in 112ms):
+ CREATE TABLE
+ example_table
+ (
+ column1  DATE,
+ column2  VARCHAR(30),
+ column3  INT
+ );
+
+ ERROR 1050 (42S01) at line 1: Table 'example_table' already exists
+There is no error here
+Run DESCRIBE TABLE example_table to see if the existing example_table is structured appropriately
+Check the syntax, near line 6
+Check that the data type for column2 should actually be VARCHAR(30)
+Based on the code snippet below, which statements are definitely true (select all that apply):
+ CREATE TABLE table_x AS
+ SELECT
+  dates_rollup.date,
+  COUNT(*)
+ FROM
+  Dates_rolluop
+ JOIN
+  Table_y
+ ON
+ dates_rollup.date = table_y.date
+ GROUP BY
+  date
+table_y has no dependencies
+table_y is dependent on table_x
+table_x is dependent on table_y and dates_rollup
+table_x is dependent on table_y
+Based on what you know about the orders table for this class, which of the following columns have a suitable datatype?
+Please note, due to the limitations of the free version of Mode Analytics, you are not able to replicate this data without an Enterprise account. 1. Invoice_id 2. Paid_at 3. item_name 4. user_id 5. Created_at
+
+For this class, we are using Mode on a dataset specifically created for this course. Which of these circumstances could be different in a real world situation? (Select all that apply.)
+The categories of data types (Number, Date, String)
+The specific dialect of SQL
+How frequently the data is updated
+Based on what you know about the items table for this class, which of the following columns have a suitable datatype? (Select all that apply.) undefined Please note, due to the limitations of the free version of Mode Analytics, you are not able to replicate this data without an Enterprise account.
+created_at
+name
+category
+Which of the following table methods allows you to specify data types?
+ MAKE NEW TABLE
+ example_table
+ AS …
+ SELECT *
+ FROM
+ example_table
+ AS …
+ CREATE TABLE
+ example_table
+ AS …
+ CREATE TABLE
+  example_table
+ (column_name1 ….)
+When creating a user info table we used a variable in place of which column?
+The date
+The order id
+The user
+Suppose in a table, you find a column called email which contains the value user@domain.com. What is the correct data type category for this column?
+Number
+Date
+String
+In this module, we created a table specifically of item view events. What level of the hierarchy of data does this belong on?
+Explore and Transform
+Collecting Data
+Learn and Optimize
+Suppose in a table you find a column called event_id, which contains the value z87df6ab4waoa756b3. What is the correct data type category for this column?
+Number
+Date
+String
+Answers 04
+Question	Answer
+1	iii
+2	ii
+3	iii, iv
+4	i, iii, iv
+5	ii, iii
+6	ii, iii
+7	iv
+8	i
+9	iv
+10	i
+11	iii
+Quiz 05
+Which of the following attributes distinguish a work-in-progress from a “polished” final query? (Select all that apply.)
+Every column has a descriptive name
+Every join is an inner join
+Every column is listed in a GROUP BY clause
+The query is formatted consistently, or according to a style guide
+In which of the following sections did we perform analysis to directly guide decision making?
+Creating a view items table
+Pulling email addresses and item_ids for a promo email
+Answering a question about reordering items
+Which of the following are uses of a dates rollup table?
+Efficiently computing aggregates over a rolling time period
+For keeping track of your meeting schedule
+Creating dashboards with a complete set of dates
+We’ve decided to only use the items and users tables to answer the following questions: How many items have been purchased? How many items do we have? Which join type and order will allow us to correctly compute the columns Item_count, items_ever_purchased_count?
+ SELECT *
+ FROM
+     dsv1069.orders
+ LEFT JOIN
+     dsv1069.items
+ ON
+     items.id = orders.item;
+ SELECT *
+ FROM
+     dsv1069.users
+ JOIN
+     dsv1069.orders
+ ON
+     items.id = orders.item
+ SELECT   *
+ FROM
+     dsv1069.items
+ LEFT OUTER JOIN
+     dsv1069.orders
+ ON
+     items.id = orders.item
+For this statement, fill in the __ with the appropriate inequality (<, <=, =, >=, >): For days in any given week Daily unique visitors _ Weekly Unique visitors
+<=
+<
+=
+>
+>=
+Select the best definition of a windowing function?
+It allows you to make your own windows of data.
+It allows you to compute aggregations with a rolling date period.
+It is a function that computes a value on a certain partition, or window, of the data that is specified in the PARTITION BY statement.
+Folks at the company wonder if our product catalog is too small. What are some related questions that you could directly answer with our dataset? (Select all that apply.)
+How many products do our competitors carry?
+How many items have been viewed?
+How many items have been viewed but not ordered?
+How many items have been purchased?
+What work would need to be done to remove products from the catalog?
+How many items do we have?
+How many users have purchased an item?
+Which of the following tasks can be accomplished with a windowing function? (Select all that apply.)
+Find the price of each item
+Find the email address of each user
+Find the most expensive item per order
+Find the most recently viewed item
+Let’s suppose we want to write a query to answer both of these questions: How many users have made a purchase? How many users do we have? Please choose the best set of columns for a final query that would answer these questions:
+Item_count user_count order count
+User_count view_count order_count
+user_count users_with_purchases
+Category item_count
+According to the methodology suggested in this module, which step comes last?
+Present the data in the appropriate context
+Format your query according to the style guide
+Understand the decisions that are at stake
+Answers 05
+Question	Answer
+1	i, iv
+2	iii
+3	i, iii
+4	iii
+5	i
+6	iii
+7	ii, iii, iv, vi
+8	iii, iv
+9	iii
+10	i
+Quiz 06
+Which of the following are the purpose of AB testing? (Select all that apply).
+Clean and label data
+Provide evidence for or disprove a hypothesis
+Learn from data
+Which of the following are necessary components of a user-level test assignment table? (Select all that apply).
+The user’s email address
+The assignment (treatment or control?)
+The user_id
+The date or time of assignment
+A test name or number
+Which of the following are necessary components of an item-level test assignment table? (Select all that apply).
+The item id
+The assignment (treatment or control?)
+The date or time of assignment
+A test name or number
+The user_id
+The item category
+In the final project we’ll be doing AB testing at an item level. Check out the table final_assignment_qa. What other pieces of data will you need to compute the 30-day order binary. (Select all that apply). Please note: 30-day order binary means show a 1 if the item was ordered at any point the 30 day period after treatment, and 0 if the item was never ordered.
+I’m still missing something
+The item category
+The users table
+The user_id
+The orders table
+Use this AB testing calculator. Enter the numbers seen in the table, and use the results to determine if the results are statistically significant. undefined
+
+Label	Number of Successes	Number of Trials
+Control	100	1000
+Treatment	101	1000
+Interval Confidence Interval : 0.95 Are the results statistically significant?
+
+No
+Yes
+For the previous data and AB test, what are the correct interpretations ?
+We have not collected enough samples to be able to detect statistically significant lift of 1%
+The treatment caused a 1% lift in the success metric
+There is no detectable change in this metric
+The treatment caused a lift of as much as 27% in the success metric
+Use this AB testing calculator. Enter the numbers seen in the table. In this calculation, what is the observed success rate in control?
+
+Label	Number of Successes	Number of Trials
+Control	216	2549
+Treatment	324	2371
+Interval Confidence Interval : 0.95
+
+12% to 15%
+8.5%
+40% to 81%
+61%
+14%
+7.5% to 9.6%
+For the previous data and AB test, what is the observed success rate in treatment?
+61%
+14%
+8.5%
+40% to 81%
+12% to 15%
+7.5% to 9.6%
+For the previous data and AB test, what is the observed relative lift in success rate between control and treatment?
+12% to 15%
+14%
+8.5%
+61%
+7.5% to 9.6%
+40% to 81%
+For the previous data and AB test, what is the range of improvement that is likely to have been caused by the treatment?
+7.5% to 9.6%
+61%
+12% to 15%
+40% to 81%
+14%
+8.5%
+Which of the following queries would meet the coding standards for the final project?
+ SELECT
+     COUNT(*) AS user_count
+ FROM dsv1069.users
+ SELECT
+     COUNT(*)
+ FROM dsv1069.users
+Answers 05
+Question	Answer
+1	ii, iii
+2	ii, iii, iv, v
+3	i, ii, iii, iv
+4	i, v
+5	i
+6	i, iv
+7	ii
+8	ii
+9	iv
+10	iv
+10	i
