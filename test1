@@ -1,0 +1,37 @@
+---exercise 1
+
+--how many users added each day?
+
+select date(created_at) as createDate
+
+       , count(*) as toplam
+
+from dsv1069.users
+
+group by date(created_at)
+
+order by date(created_at)
+
+
+--exercise 3
+
+
+date(created_at) AS day,
+
+COUNT(*) AS users
+
+FROM
+
+dsv1069.users
+
+WHERE
+
+deleted_at IS NULL
+
+AND
+
+(id <> parent_user_id OR parent_user_id IS NULL)
+
+GROUP BY
+
+date(created_at)
